@@ -7,6 +7,11 @@ import java.util.concurrent.TimeUnit;
 
 public class DateUtils {
 
+	/**
+	 * 
+	 * @param dateOfAdmission
+	 * @return
+	 */
 	public static int getNoOfDaysStayed(String dateOfAdmission) {
 		
 		int noOfDays = 0;

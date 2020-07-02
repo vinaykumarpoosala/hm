@@ -22,11 +22,13 @@ public class PatientService {
 	@Autowired
 	MedicineSerivice medicineSerivice;
 
+	//to add patient
 	public Patient addPatient(Patient patient) {
 		patient.setStatus("active");
 		return repository.save(patient);
 	}
 
+	//search patient by id
 	public Patient searchPatientById(Long id) {
 		Patient patient = null;
 		Optional<Patient> optinalEntity = repository.findById(id);
@@ -37,11 +39,13 @@ public class PatientService {
 		return patient;
 	}
 
+	
+	//update patient
 	public Patient updatePatient(Patient patient) {
-		//original patient
+		
 		Patient originalP = searchPatientById(patient.getId());
 		
-		//form data --> orignal patient
+		
 		originalP.setAddress(patient.getAddress());
 		originalP.setName(patient.getName());
 		originalP.setAge(patient.getAge());
@@ -49,18 +53,22 @@ public class PatientService {
 		originalP.setState(patient.getState());
 		originalP.setTypeOfBed(patient.getTypeOfBed());
 		
-		//saving orignal patient
+		//saving original patient
 		Patient p = repository.save(originalP);
 		System.err.println(p);
 		return p;
 
 	}
 
+	
+	//delete patient
 	public void deletePatient(@Valid Patient patient) {
 		repository.delete(patient);
 
 	}
 
+	
+	//adding medicine to patient
 	public void addMedicine(String id, Medicine medicine) {
 		Patient patient = searchPatientById(Long.parseLong(id));
 		medicineSerivice.updateMedicine(medicine);
@@ -70,6 +78,7 @@ public class PatientService {
 
 	}
 
+	//adding tests to the patient
 	public void addTest(String id, Diagnostic diagnostic) {
 
 		Patient patient = searchPatientById(Long.parseLong(id));
@@ -80,6 +89,7 @@ public class PatientService {
 
 	}
 
+	//finding all active patients
 	public List<Patient> findAllActivePatients() {
 		List<Patient> activePatients = new ArrayList<>();
 		List<Patient> patients = (List<Patient>) repository.findAll();

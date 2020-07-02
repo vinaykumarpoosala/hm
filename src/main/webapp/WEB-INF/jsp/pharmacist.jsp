@@ -128,8 +128,10 @@
 					required="required" /></td>
 			</tr>
 			<tr>
-				<td align="left"><input type="submit" id="submit"
+			<td></td>
+				<td align="center"><input type="submit" id="submit"
 					value="confirm"></td>
+					<td></td>
 			</tr>
 		</table>
 

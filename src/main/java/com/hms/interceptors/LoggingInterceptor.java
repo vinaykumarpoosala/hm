@@ -11,6 +11,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
 
+	/**
+	 * checks every client request and session token 
+	 */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
        
@@ -21,7 +24,6 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 
     	if(null==token || token.equals("null"))
     	{
-    		System.out.println("in if condition redirecting to home");
     		request.setAttribute("message", "please login to continue any operations");
     		request.getRequestDispatcher("/home").include(request, response);
     		return false;
@@ -29,7 +31,6 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
     		
 
         if(null!=request.getCookies()){
-        	System.out.println();
         	
             for(Cookie cookie: request.getCookies()){
                 if("JSESSIONID".equals(cookie.getName())){
@@ -46,7 +47,6 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("in post handle");
     }
 }
 

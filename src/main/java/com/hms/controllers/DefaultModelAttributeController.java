@@ -11,7 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.Arrays;
 import java.util.List;
 
-// remove modification
+
+
+/**
+ * initialzing model attributes
+ * @author vinay
+ *
+ */
 @SuppressWarnings("unused")
 @ControllerAdvice
 public class DefaultModelAttributeController {

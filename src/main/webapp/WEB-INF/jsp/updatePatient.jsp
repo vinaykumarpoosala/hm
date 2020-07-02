@@ -101,7 +101,7 @@
 			
 			<tr>
 				<td>State</td>
-				<td><input type="text" name="state" value="${patient.state}" readonly="readonly"/></td>
+				<td><input type="text"  value="${patient.state}" readonly="readonly"/></td>
 				<td><select
 						onchange="print_city('state', this.selectedIndex);" name="state"
 						id="sts" name="stt" class="form-control" required
@@ -120,6 +120,8 @@
 			</tr>
     		 	
     		 	<tr>
+    		 	<td></td>
+    		 	<td></td>
     		 	<td><input type="submit" value="Update" id="submit"></td>
     		 	</tr>
     		 	

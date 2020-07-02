@@ -19,6 +19,13 @@ public class RegistrationController {
 	@Autowired
 	PatientService service;
 
+	/**
+	 * 
+	 * @param patient
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/registeruser", method = RequestMethod.POST)
 	public String registerUser(@Valid @ModelAttribute("newPatient") Patient patient, BindingResult result, Model model) {
 		System.out.println(patient);

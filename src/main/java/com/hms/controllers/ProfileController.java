@@ -11,7 +11,6 @@ public class ProfileController {
 	@PostMapping("/profile")
 	public String profile(@SessionAttribute("Token") String token ,Model model)
 	{
-		System.out.println("session token "+token);
 		return "profile";
 	}
 }

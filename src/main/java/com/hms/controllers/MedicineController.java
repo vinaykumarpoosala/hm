@@ -1,6 +1,5 @@
 package com.hms.controllers;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,41 +20,41 @@ import com.hms.services.PatientService;
 
 @Controller
 public class MedicineController {
-	
-	
+
 	@Autowired
 	MedicineSerivice MedicineSerivice;
 
 	@Autowired
 	PatientService service;
-	@RequestMapping(value = "/addMedicine",method = RequestMethod.POST)
-	public String addMedicine(@RequestParam("patientId") String id ,@ModelAttribute("medicine") Medicine medicine,Model model,HttpSession session)
-	{
-		if(session.getAttribute("Token")==null || session.getAttribute("Token")=="")
+	
+	/**
+	 * 
+	 * @param id
+	 * @param medicine
+	 * @param model
+	 * @param session
+	 * @return
+	 * adds medicine and removes the quantity in master medicine
+	 */
+	@RequestMapping(value = "/addMedicine", method = RequestMethod.POST)
+	public String addMedicine(@RequestParam("patientId") String id, @ModelAttribute("medicine") Medicine medicine,
+			Model model, HttpSession session) {
+		if (session.getAttribute("Token") == null || session.getAttribute("Token") == "")
 			return "home";
-		System.out.println("in add medicine method");
-		System.out.println(id);
-		System.out.println(medicine);
-		
-		
-		service.addMedicine(id,medicine);
-		return "redirect:search?patientId="+id;
+		service.addMedicine(id, medicine);
+		return "redirect:search?patientId=" + id;
 	}
-	
-	
+
 	@ExceptionHandler(ApplicationException.class)
 	public String handleResourceNotFoundException() {
 
-        return "error";
+		return "error";
 
-    }
+	}
 
-@ExceptionHandler(ApplicationException.class)
-@ResponseStatus(code = HttpStatus.NOT_FOUND)
-public String handleNotFoundException() {
-    return "error";
+	@ExceptionHandler(ApplicationException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public String handleNotFoundException() {
+		return "error";
+	}
 }
-}
-
-
-

@@ -18,6 +18,11 @@ public class StatusController {
 	@Autowired
 	PatientService service;
 	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/patientsStatus")
 	public String getPatientsStatusOfActive(Model model)
 	{

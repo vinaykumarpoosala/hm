@@ -10,6 +10,11 @@ import com.hms.beans.Patient;
 
 public final class FinalBilling {
 
+	/**
+	 * 
+	 * @param patient
+	 * @return
+	 */
 	public static Map<String, Integer> finalBilling(Patient patient) {
 		String dateOfAdmission = patient.getDateoFAdmission();
 		Map<String, Integer> mapForBilling = new HashMap<>();
@@ -24,7 +29,13 @@ public final class FinalBilling {
 		mapForBilling.put("totalBill", totalBill);
 		return mapForBilling;
 	}
+	
 
+	/**
+	 * 
+	 * @param patient
+	 * @return billForDiagnostics
+	 */
 	public static int billForDiagnostics(Patient patient) {
 		int totalBillForDiagnostics = 0;
 		List<Diagnostic> diagnostics = patient.getTests();
@@ -34,6 +45,12 @@ public final class FinalBilling {
 		return totalBillForDiagnostics;
 	}
 
+	
+	/**
+	 * 
+	 * @param patient
+	 * @return total bill for stay
+	 */
 	public static int billForStay(Patient patient) {
 		int totalbillForStay = 0;
 		String dateOfAdmission = patient.getDateoFAdmission();
@@ -52,7 +69,13 @@ public final class FinalBilling {
 
 		return totalbillForStay;
 	}
+	
 
+	/**
+	 * 
+	 * @param patient
+	 * @return total bill for medicine
+	 */
 	public static int billForMedicine(Patient patient) {
 		int totalBillForMedicine = 0;
 		for (Medicine medicine : patient.getMedicines()) {

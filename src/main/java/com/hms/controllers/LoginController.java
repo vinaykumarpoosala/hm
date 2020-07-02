@@ -1,4 +1,5 @@
 package com.hms.controllers;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,38 +15,46 @@ import com.hms.beans.User;
 import com.hms.exceptions.ApplicationException;
 import com.hms.repositories.UserRepository;
 
-
-// remove modification
 @SuppressWarnings("unused")
 @Controller
 public class LoginController {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute("login")Login login ,HttpSession session){
-    	
-    	System.out.println("login user name"+login.getUsername());
-    	
-        User user  = userRepository.searchByName(login.getUsername());
-        if(user==null){
-            throw new ApplicationException("User Not found");
-        }
-        if(user.getPassword().equalsIgnoreCase(login.getPassword()))
-        {
-        	
-        	session.setAttribute("Token", user.getUsername());
-        	session.setAttribute("userType", user.getUserType());
-        	return "forward:/profile";
-        }
-        return "login";
-    }
+	/**
+	 * 
+	 * @param login
+	 * @param session
+	 * @return validates user existence and set session attributes
+	 */
+	@PostMapping("/login")
+	public String login(@ModelAttribute("login") Login login, HttpSession session) {
 
-    @ExceptionHandler(ApplicationException.class)
-    public String handleException(Model model){
-        System.out.println("in exception handler of Login Controller");
-        model.addAttribute("error","Username Or Password Incorrect Please try again");
-        return "error";
-    }
+		System.out.println("login user name" + login.getUsername());
+
+		User user = userRepository.searchByName(login.getUsername());
+		if (user == null) {
+			throw new ApplicationException("User Not found");
+		}
+		if (user.getPassword().equalsIgnoreCase(login.getPassword())) {
+
+			session.setAttribute("Token", user.getUsername());
+			session.setAttribute("userType", user.getUserType());
+			return "forward:/profile";
+		}
+		return "login";
+	}
+
+	/**
+	 * 
+	 * @param model
+	 * @return error message if user doesn't exists
+	 */
+	@ExceptionHandler(ApplicationException.class)
+	public String handleException(Model model) {
+		System.out.println("in exception handler of Login Controller");
+		model.addAttribute("error", "Username Or Password Incorrect Please try again");
+		return "error";
+	}
 }

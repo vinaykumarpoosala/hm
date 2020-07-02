@@ -48,7 +48,7 @@
 			<tr>
 				<th class="label">Test Name</th>
 
-				<th class="label">Medicine Amount</th>
+				<th class="label">Test Amount</th>
 
 			</tr>
 		</thead>
@@ -141,6 +141,8 @@ $(document).ready(function() {
 		</c:forEach>
 
 		<tr>
+		<td></td>		<td></td>
+		
 			<td>total bill for medicine</td>
 			<td>${mapForBilling.get('billForMedicine')}</td>
 		</tr>
@@ -148,7 +150,7 @@ $(document).ready(function() {
 	</table>
 	<p align="center">Total Bill Payable
 		${mapForBilling.get('totalBill')}</p>
-	<form action="/bilingConfirmed" method="post">
+	<form action="/bilingConfirmed" method="post" align="center">
 		<input type="hidden" name="patientId" value="${patient.id}"> <input
 			type="hidden" name="totalBill"
 			value="${mapForBilling.get('totalBill')}"> <input

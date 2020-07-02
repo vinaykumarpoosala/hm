@@ -14,9 +14,21 @@ import com.hms.services.PatientService;
 @Controller
 public class BillController {
 
+	/**
+	 * Controller to manage final billing
+	 * 
+	 */
 	@Autowired
 	PatientService service;
-
+	
+	/**
+	 * 
+	 * 
+	 * @param bill
+	 * @param id
+	 * @param model
+	 * @return 
+	 */
 	@PostMapping(value = "/bilingConfirmed")
 	public String confirmbilling(@RequestParam("totalBill") int bill, @RequestParam("patientId") long id, Model model) {
 		Patient patient = service.searchPatientById(id);

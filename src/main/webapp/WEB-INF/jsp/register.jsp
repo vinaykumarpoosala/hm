@@ -130,6 +130,7 @@
 					</tr>
 					<!-- <br> -->
 					<tr>
+					<td></td>
 						<td><input type="submit" value="Submit" id="submit"></td>
 						<td><span>${error}</span></td>
 					</tr>

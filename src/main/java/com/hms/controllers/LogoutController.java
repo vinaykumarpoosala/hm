@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LogoutController {
 	
+	/**
+	 * 
+	 * @param session
+	 * @param model
+	 * @return 
+	 * removing session attributes and logging out user
+	 */
 	@GetMapping(value="/Logout")
 	public String logout(HttpSession session , Model model )
 	{
-		System.out.println("in logout conroller");
 		session.removeAttribute("Token");
 		session.removeAttribute("userType");
 		session.invalidate();
-		System.out.println("forwarding to home");
 		return "redirect:home";
 		
 	}

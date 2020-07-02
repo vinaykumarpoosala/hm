@@ -11,12 +11,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hms.beans.Diagnostic;
 import com.hms.services.PatientService;
 
+/**
+ * 
+ * @author 
+ *
+ */
 @Controller
 public class DiagnosticController {
 	
 	@Autowired
 	PatientService service;
 	@RequestMapping(value="addTest" , method=RequestMethod.POST)
+	/**
+	 *
+	 * @param id
+	 * @param diagnostic
+	 * @param session
+	 * @return
+	 */
 	public String addTest( @RequestParam("patientId") String id,@ModelAttribute("diagnostic") Diagnostic diagnostic,HttpSession session)
 	{
 		

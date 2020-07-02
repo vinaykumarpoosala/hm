@@ -58,13 +58,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#example').DataTable({
-				"pagingType" : "full_numbers"
-			});
-		});
-	</script>
+	
 
 	<br>
 	<br>
@@ -105,12 +99,22 @@
 				<td>Amount</td>
 			</tr>
 			<tr>
-				<td><input type="text" name="name" required="required"/></td>
+				<td><select id="testname" name="name" onchange="displayrate();"
+					required="required">
+						<option value="--Select--">--Select--</option>
+						<c:forEach var="test" items="${masterTests.keySet().iterator()}">
+							<option value="${test}">${test}</option>
+						</c:forEach>
+				</select></td>
 
-				<td><input type="number" name='amount' id='am' required="required" /></td>
+				<td><input type="number" name='amount' id='rate'
+					required="required" readonly /></td>
+				<%-- <td>${MasterTests.getRate() }</td> --%>
 			</tr>
 			<tr>
-				<td align="left"><input type="submit" value="confirm"></td>
+			<td>
+			</td>
+				<td align="center"><input type="submit" value="confirm"></td>
 			</tr>
 		</table>
 
@@ -126,6 +130,20 @@
 
 
 </body>
+<script type="text/javascript">
+var data = eval('(' + '${jsonDataForTests}' + ')');
+var obj = JSON.parse(JSON.stringify(data));
+	function displayrate() {
+		var medName = document.getElementById('testname').value;
+		console.log(medName);
+		document.getElementById('rate').setAttribute('value',
+				obj[medName]);
+		console.log(obj[medName]);
+		
+					
+		
+	}
+</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
